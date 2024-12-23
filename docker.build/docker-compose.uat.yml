@@ -1,0 +1,26 @@
+# Please modify this file in gitlab
+version: '3.2'
+services:
+  snabb_portal_uat:
+    container_name: snabb_portal_uat
+    image: 646171399969.dkr.ecr.ap-southeast-1.amazonaws.com/IMAGES_RELEASE
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+        APPLICATION_ENV: staging
+        NODE_ENV: staging
+    networks:
+      net:
+        ipv4_address: 10.22.44.2
+
+networks:
+ net:
+  ipam:
+   driver: default
+   config:
+   - subnet: 10.22.44.0/28
+
+volumes:
+  public:
+

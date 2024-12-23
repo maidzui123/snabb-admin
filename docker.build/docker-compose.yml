@@ -1,0 +1,28 @@
+# Please modify this file in gitlab
+version: '3.2'
+services:
+  snabb_portal_dev:
+    container_name: snabb_portal_dev
+    image: snabb_portal_dev:latest
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - public:/var/www/html/public
+    environment:
+        APPLICATION_ENV: test
+        NODE_ENV: test
+    networks:
+      net:
+        ipv4_address: 10.22.34.2
+
+
+networks:
+ net:
+  ipam:
+   driver: default
+   config:
+   - subnet: 10.22.34.0/28
+
+volumes:
+  public:
+

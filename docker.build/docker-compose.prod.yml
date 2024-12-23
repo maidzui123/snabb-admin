@@ -1,0 +1,39 @@
+# Please modify this file in gitlab
+version: '3.2'
+services:
+  snabb_portal_prod_blue:
+    container_name: snabb_portal_prod_blue
+    image: 646171399969.dkr.ecr.ap-southeast-1.amazonaws.com/IMAGES_RELEASE_BLUE
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+        APPLICATION_ENV: production
+        NODE_ENV: production
+    networks:
+      net:
+        ipv4_address: 10.22.54.2
+
+  snabb_portal_prod_green:
+    container_name: snabb_portal_prod_green
+    image: 646171399969.dkr.ecr.ap-southeast-1.amazonaws.com/IMAGES_RELEASE_GREEN
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+        APPLICATION_ENV: production
+        NODE_ENV: production
+    networks:
+      net:
+        ipv4_address: 10.22.54.3
+
+networks:
+ net:
+  ipam:
+   driver: default
+   config:
+   - subnet: 10.22.54.0/28
+
+volumes:
+  public:
+
